@@ -1,0 +1,4 @@
+data/
+node_modules/
+cities.db
+package-lock.json
