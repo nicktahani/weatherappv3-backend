@@ -11,6 +11,7 @@ const db = new sqlite3.Database('./cities.db')
 async function sourceSearch (req, res) {
   const { searchString } = req.params
   console.log(`autocomplete: "${searchString}"`)
+  //FIXME potential injection error
   const query = `SELECT city_name, state_code, country_code FROM cities WHERE city_name LIKE '%${searchString}%' LIMIT 10`
 
   db.all(query, [], (err, rows) => {
@@ -24,8 +25,4 @@ async function sourceSearch (req, res) {
 
 app.get('/api/search/:searchString', sourceSearch)
 app.listen(3005, () => console.log('listening on port 3005'))
-
-
-
-
 
